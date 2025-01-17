@@ -79,19 +79,19 @@ Ensure you have the following installed:
 
 ## Screenshots
 
-### Dashboard
+### Dashboard Light
 
-![Dashboard Screenshot](./screenshots/dashboard.png)
+![Dashboard Screenshot](./public/light.png)
+
+### Dashboard Dark
+
+![Dashboard Screenshot](./public/dark.png)
 
 ### Create Invoice
 
-![Create Invoice Screenshot](./screenshots/create-invoice.png)
+![Create Invoice Screenshot](./public/formScreen.png)
 
-### Invoice List
-
-![Invoice List Screenshot](./screenshots/invoice-list.png)
-
-> Screenshots are stored in the `/screenshots` directory.
+> Screenshots are stored in the `/public` directory.
 
 ---
 
