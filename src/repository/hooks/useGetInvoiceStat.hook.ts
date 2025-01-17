@@ -6,6 +6,13 @@ export const useGetInvoiceStat = () => {
 
     return useQuery({
         queryKey: ["invoiceStat"],
-        queryFn: () => service.getInvoiceStat()
+        queryFn: async () => {
+            const result = service.getInvoiceStat();
+            if (!result) {
+                throw new Error("Failed to fetch invoice list: Received undefined response.");
+
+            }
+            return result;
+        }
     })
 }

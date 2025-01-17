@@ -6,7 +6,13 @@ export const useGetInvoiceList = (params: GetInvoiceListParam = {}) => {
     return useQuery({
         queryKey: ["invoiceList"],
         queryFn: async () => {
-            return service.getInvoiceList(params)
+            const result = await service.getInvoiceList(params);
+            if (!result) {
+                throw new Error("Failed to fetch invoice list: Received undefined response.");
+
+            }
+            return result;
+
         },
         retry: 2,
         staleTime: 600000,

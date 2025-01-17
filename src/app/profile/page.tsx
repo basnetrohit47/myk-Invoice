@@ -5,7 +5,7 @@ import { useEditProfile } from "@/repository/hooks/useEditProfile.hook";
 import { useGetProfile } from "@/repository/hooks/useGetProfile.hook";
 import { EditProfileParam, EditProfileSchema } from "@/repository/params/user.param";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Typography } from "@mui/material";
+import { Button, Paper, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -40,10 +40,12 @@ const ProfilePage = () => {
 
   return (
     <>
-      <div className="m-4 p-4">
+      <Paper className="m-4 p-4" elevation={0}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex  m-10">
-            <Typography variant="h4">Personal Information</Typography>
+            <Typography variant="h4" color="text.primary">
+              Personal Information
+            </Typography>
             <Button type="submit" className="ml-auto" variant="contained">
               Update
             </Button>
@@ -72,7 +74,7 @@ const ProfilePage = () => {
             <TextFieldInput className="w-[50%] pr-2" control={control} name="address" label="Address" />
           </div>
         </form>
-      </div>
+      </Paper>
     </>
   );
 };

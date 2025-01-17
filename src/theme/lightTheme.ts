@@ -7,16 +7,26 @@ const lightTheme = createTheme({
       main: "#1976d2", // Blue color for primary theme
     },
     secondary: {
-        main: "#c2185b", // Customize secondary color if needed
-      },
-    background:{
-      default: "#f8fcfe", 
-      paper:"white"
+      main: "#c2185b", // Customize secondary color if needed
+    },
+    background: {
+      default: "#f8fcfe",
+      paper: "white"
     }
-     
-   
+
+
   },
-  
+  components: {
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#edf2f6",
+        }
+      }
+    },
+
+  },
+
 });
 
 export default lightTheme;

@@ -1,6 +1,6 @@
 "use client";
 import { TextareaInput } from "../../formInputs/TextareaInput";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Paper, Typography } from "@mui/material";
 import UploadIcon from "@mui/icons-material/Upload";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -49,13 +49,13 @@ export const InvoiceForm = () => {
       <Box>
         <form className="w-full " onSubmit={handleSubmit(onSubmit)}>
           <div className="flex gap-8 ">
-            <div className="p-8 m-2  border border-gray-300 rounded-lg w-[65%]">
+            <Paper className="px-8 py-12 m-2   rounded-lg w-[65%]">
               <div className="flex gap-8 ">
                 <div className="flex flex-col gap-6 w-[50%]">
-                  <div className="bg-blue-50 rounded-md cursor-pointer border border-dotted flex justify-center">
+                  <div className=" rounded-md cursor-pointer border-2 border-dotted flex justify-center">
                     <div className="p-4 text-center">
                       <UploadIcon />
-                      <p>Upload logo</p>
+                      <Typography>Upload logo</Typography>
                       <p className="text-[8px]">240 x 240 pixels @ 72 DPI, Maximum size of 1MB.</p>
                     </div>
                   </div>
@@ -169,7 +169,7 @@ export const InvoiceForm = () => {
                   <TextareaInput name="bank" label="Add bank details" control={control} />
                 </div>
               </div>
-            </div>
+            </Paper>
             <div className="w-[35%] ">
               <div>
                 <div className="flex justify-end gap-2 ">

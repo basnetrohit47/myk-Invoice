@@ -1,15 +1,15 @@
-import { CreateInvoiceParams } from "@/repository/params/invoice.param";
+import { EditInvoiceByIdParam } from "@/repository/params/invoice.param";
 import { Paper, Typography } from "@mui/material";
 import { forwardRef } from "react";
 import { InvoiceProductComponent } from "./InvoiceProduct";
 
 interface Props {
-  formData: CreateInvoiceParams;
+  formData: EditInvoiceByIdParam;
   subTotal: number;
   total: number;
 }
 
-const ClassicInvoicePreview = forwardRef<HTMLDivElement, Props>((props, ref) => {
+const EditInvoicePreview = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const { formData, subTotal, total } = props;
   let discount = formData.discount;
   if (formData.discount_sign == "percent" && discount) {
@@ -22,7 +22,7 @@ const ClassicInvoicePreview = forwardRef<HTMLDivElement, Props>((props, ref) => 
 
   return (
     <>
-      <Paper className="p-4  m-4 rounded-xl min-h-[60vh]">
+      <Paper className="p-4  m-4  rounded-xl min-h-[60vh]">
         <div id="invoice-preview" ref={ref}>
           <div className="text-right">
             <Typography variant="h4">Invoice</Typography>
@@ -57,7 +57,7 @@ const ClassicInvoicePreview = forwardRef<HTMLDivElement, Props>((props, ref) => 
               </div>
             </div>
           </div>
-          <InvoiceProductComponent product={formData.products} />
+          {formData.products && <InvoiceProductComponent product={formData.products} />}
           <div className="flex flex-col items-end gap-4 mt-4 text-[0.6rem]">
             <div className="flex gap-6">
               <p>Subtotal</p>
@@ -114,6 +114,6 @@ const ClassicInvoicePreview = forwardRef<HTMLDivElement, Props>((props, ref) => 
 });
 
 // Add this line to fix the warning/error
-ClassicInvoicePreview.displayName = "PreviewComponent";
+EditInvoicePreview.displayName = "PreviewComponent";
 
-export default ClassicInvoicePreview;
+export default EditInvoicePreview;

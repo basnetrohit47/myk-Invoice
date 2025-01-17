@@ -5,7 +5,12 @@ export const useGetProfile = () => {
     return useQuery({
         queryKey: ["profile"],
         queryFn: async () => {
-            return service.getProfile()
+            const result = service.getProfile()
+            if (!result) {
+                throw new Error("Failed to fetch invoice list: Received undefined response.");
+
+            }
+            return result;
         }
     })
 }
