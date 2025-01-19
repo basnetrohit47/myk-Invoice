@@ -1,6 +1,6 @@
-import InvoiceInterface from "@/repository/interface/invoice.interface";
-import { InvoiceListResponseModel, InvoiceListResponseSchema, InvoiceModel, InvoiceRow, InvoiceRowSchema, InvoiceSchema, InvoiceStatResponse, InvoiceStatResponseSchema } from "@/repository/models/invoice.model";
-import { CreateInvoiceParams, EditInvoiceByIdParam, GetInvoiceByIdParam, GetInvoiceListParam } from "@/repository/params/invoice.param";
+import InvoiceInterface from "@/feature/interface/invoice.interface";
+import { InvoiceListResponseModel, InvoiceListResponseSchema, InvoiceModel, InvoiceRow, InvoiceRowSchema, InvoiceSchema, InvoiceStatResponse, InvoiceStatResponseSchema } from "@/feature/models/invoice.model";
+import { CreateInvoiceParams, EditInvoiceByIdParam, GetInvoiceByIdParam, GetInvoiceListParam } from "@/feature/params/invoice.param";
 import { apiClient } from "../config/apiClient";
 
 export default class InvoiceDataSource extends InvoiceInterface {

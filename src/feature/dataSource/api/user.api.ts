@@ -1,7 +1,7 @@
-import { LoginModel, LoginSchema, Profilechema, ProfileModel } from "@/repository/models/user.model";
+import { LoginModel, LoginSchema, Profilechema, ProfileModel } from "@/feature/models/user.model";
 import { apiClient } from "../config/apiClient"
-import { EditProfileParam, LoginParam } from "@/repository/params/user.param"
-import UserInterface from "@/repository/interface/user.interface";
+import { EditProfileParam, LoginParam } from "@/feature/params/user.param"
+import UserInterface from "@/feature/interface/user.interface";
 
 
 export default class UserDataSource extends UserInterface {

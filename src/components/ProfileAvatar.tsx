@@ -5,7 +5,7 @@ import { deepOrange } from "@mui/material/colors";
 import Link from "next/link";
 import React, { useState } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { useGetProfile } from "@/repository/hooks/useGetProfile.hook";
+import { useGetProfile } from "@/feature/hooks/useGetProfile.hook";
 const ProfileAvatar = () => {
   const { data: profile } = useGetProfile();
   const { logout } = useAuth();

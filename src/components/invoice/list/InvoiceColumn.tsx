@@ -1,4 +1,4 @@
-import { InvoiceRow } from "@/repository/models/invoice.model";
+import { InvoiceRow } from "@/feature/models/invoice.model";
 import { Avatar, Chip, IconButton, Typography } from "@mui/material";
 import { blue, deepPurple, green, orange, red } from "@mui/material/colors";
 import { GridColDef } from "@mui/x-data-grid";
@@ -14,17 +14,13 @@ const getAvatarColor = (value: string) => {
   const hash = value.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
   return colors[hash % colors.length]; // Cycle through colors
 };
-const getStatusColor = (value: string) => {
-  if (value.toLocaleLowerCase() === "overdue") {
-    return "border-red-700 bg-red-100 text-red-700";
-  }
-  if (value.toLocaleLowerCase() === "paid") {
-    return "border-green-700 bg-green-100 text-green-700";
-  }
-  if (value.toLocaleLowerCase() === "partially_paid") {
-    return "border-blue-700 bg-blue-100 text-blue-700";
-  }
-  return "border-gray-700 bg-gray-100 text-gray-700";
+type Status = "overdue" | "paid" | "partially_paid" | "pending";
+
+const statusColor: Record<Status, string> = {
+  overdue: "border-red-700 bg-red-100 text-red-700",
+  paid: "border-green-700 bg-green-100 text-green-700",
+  partially_paid: "border-blue-700 bg-blue-100 text-blue-700",
+  pending: "border-gray-700 bg-gray-100 text-gray-700",
 };
 const DeleteInvoiceButton = ({ invoiceId }: { invoiceId: number }) => {
   const { isModalOpen, handleDeleteClick, handleDeleteCancel, handleDeleteConfirm } = useInvoiceDelete();
@@ -64,7 +60,7 @@ export const columns: GridColDef<InvoiceRow>[] = [
     renderCell: (params) => (
       <>
         <div className="flex  items-center gap-2">
-          <Avatar sx={{ bgcolor: getAvatarColor(params.value), width: "30px", height: "30px", fontSize: "1rem" }} sizes="small">
+          <Avatar sx={{ bgcolor: getAvatarColor(params.value), width: "30px", height: "30px", fontSize: "0.8rem" }} sizes="small">
             {params.value.charAt(0)}
           </Avatar>
 
@@ -81,9 +77,11 @@ export const columns: GridColDef<InvoiceRow>[] = [
     headerName: "Status",
     minWidth: 130,
     flex: 0.2,
+    sortable: false,
+    disableColumnMenu: true,
     renderCell: (params) => (
       <>
-        <Chip size="small" label={params.value} variant="outlined" className={`${getStatusColor(params.value)} text-[0.6rem] min-w-16`} />
+        <Chip size="small" label={params.value} variant="outlined" className={`${statusColor[params.value.toLocaleLowerCase() as Status]} text-[0.6rem] min-w-16`} />
       </>
     ),
   },

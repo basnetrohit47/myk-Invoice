@@ -1,4 +1,4 @@
-import { EditInvoiceByIdParam } from "@/repository/params/invoice.param";
+import { EditInvoiceByIdParam } from "@/feature/params/invoice.param";
 import { Paper, Typography } from "@mui/material";
 import { forwardRef } from "react";
 import { InvoiceProductComponent } from "./InvoiceProduct";
