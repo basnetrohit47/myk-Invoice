@@ -1,9 +1,9 @@
 "use client";
 import { TextFieldInput } from "@/components/formInputs/TextFieldInput";
 import { WithAuth } from "@/hoc/withAuth";
-import { useEditProfile } from "@/feature/hooks/useEditProfile.hook";
-import { useGetProfile } from "@/feature/hooks/useGetProfile.hook";
-import { EditProfileParam, EditProfileSchema } from "@/feature/params/user.param";
+import { useEditProfile } from "@/domain/hooks/useEditProfile.hook";
+import { useGetProfile } from "@/domain/hooks/useGetProfile.hook";
+import { EditProfileParam, EditProfileSchema } from "@/domain/params/user.param";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Paper, Typography } from "@mui/material";
 import React, { useEffect } from "react";

@@ -1,5 +1,5 @@
 
-import InvoiceDataSource from "@/feature/dataSource/api/invoice.api";
+import InvoiceDataSource from "@/domain/dataSource/api/invoice.api";
 import InvoiceInterface from "../interface/invoice.interface";
 import { CreateInvoiceParams, EditInvoiceByIdParam, GetInvoiceByIdParam, GetInvoiceListParam } from "../params/invoice.param";
 import { InvoiceListResponseModel, InvoiceModel, InvoiceRow, InvoiceStatResponse } from "../models/invoice.model";

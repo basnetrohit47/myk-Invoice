@@ -1,5 +1,5 @@
-import { InvoiceModel } from "@/feature/models/invoice.model";
-import { ProductModel } from "@/feature/models/product.models";
+import { InvoiceModel } from "@/domain/models/invoice.model";
+import { ProductModel } from "@/domain/models/product.models";
 
 export const getTotals = (formData: InvoiceModel) => {
      const subTotal = formData.products.reduce((sum: number, item: ProductModel) => {

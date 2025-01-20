@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
 import { DataGrid } from "@mui/x-data-grid";
-import { useGetInvoiceList } from "@/feature/hooks/useGetInvoiceList.hook";
+import { useGetInvoiceList } from "@/domain/hooks/useGetInvoiceList.hook";
 
 import { columns } from "./InvoiceColumn";
 

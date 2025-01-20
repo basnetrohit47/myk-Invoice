@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { forwardRef } from "react";
 import { InvoiceProductComponent } from "./InvoiceProduct";
-import { InvoiceModel } from "@/feature/models/invoice.model";
+import { InvoiceModel } from "@/domain/models/invoice.model";
 
 interface Props {
   invoice: InvoiceModel;

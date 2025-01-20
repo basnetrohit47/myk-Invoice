@@ -1,4 +1,4 @@
-import { InvoiceRow } from "@/feature/models/invoice.model";
+import { InvoiceRow } from "@/domain/models/invoice.model";
 import { Avatar, Chip, IconButton, Typography } from "@mui/material";
 import { blue, deepPurple, green, orange, red } from "@mui/material/colors";
 import { GridColDef } from "@mui/x-data-grid";

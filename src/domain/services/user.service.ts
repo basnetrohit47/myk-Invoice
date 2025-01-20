@@ -1,4 +1,4 @@
-import UserDataSource from "@/feature/dataSource/api/user.api";
+import UserDataSource from "@/domain/dataSource/api/user.api";
 import { EditProfileParam, LoginParam } from "../params/user.param";
 import { LoginModel, ProfileModel } from "../models/user.model";
 import UserInterface from "../interface/user.interface";

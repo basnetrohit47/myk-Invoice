@@ -1,4 +1,4 @@
-import { CreateProductModel } from "@/feature/params/product.param";
+import { CreateProductModel } from "@/domain/params/product.param";
 import { Paper, styled, Table, TableBody, TableCell, tableCellClasses, TableContainer, TableHead, TableRow } from "@mui/material";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

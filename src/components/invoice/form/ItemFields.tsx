@@ -3,7 +3,7 @@ import { Button, Paper, styled, Table, TableBody, TableCell, tableCellClasses, T
 import { Control, useFieldArray, useWatch } from "react-hook-form";
 import { TextareaInput } from "../../formInputs/TextareaInput";
 import ClearIcon from "@mui/icons-material/Clear";
-import { CreateInvoiceParams } from "@/feature/params/invoice.param";
+import { CreateInvoiceParams } from "@/domain/params/invoice.param";
 import { TextFieldInput } from "@/components/formInputs/TextFieldInput";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({

@@ -4,7 +4,7 @@ import { Button, Typography } from "@mui/material";
 import Link from "next/link";
 import AddIcon from "@mui/icons-material/Add";
 import InvoiceDashboard from "@/components/invoice/invoiceStat/InvoiceDashboard";
-import { useGetProfile } from "@/feature/hooks/useGetProfile.hook";
+import { useGetProfile } from "@/domain/hooks/useGetProfile.hook";
 const InvoicePage = () => {
   const { data: profile } = useGetProfile();
   return (
