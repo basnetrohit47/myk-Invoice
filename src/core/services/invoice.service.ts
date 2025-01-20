@@ -1,8 +1,8 @@
 
-import InvoiceDataSource from "@/domain/dataSource/api/invoice.api";
-import InvoiceInterface from "../interface/invoice.interface";
+import InvoiceDataSource from "@/core/api/invoice.api";
 import { CreateInvoiceParams, EditInvoiceByIdParam, GetInvoiceByIdParam, GetInvoiceListParam } from "../params/invoice.param";
 import { InvoiceListResponseModel, InvoiceModel, InvoiceRow, InvoiceStatResponse } from "../models/invoice.model";
+import InvoiceInterface from "../repositories/invoice.interface";
 
 export default class InvoiceService {
     private static _instance: InvoiceService;

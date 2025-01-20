@@ -8,12 +8,12 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ItemFields } from "./ItemFields";
 import { FormInputDropdown } from "../../formInputs/DropdownInput";
 import { TextFieldInput } from "@/components/formInputs/TextFieldInput";
-import { CreateInvoiceParams, CreateInvoiceSchema } from "@/domain/params/invoice.param";
+import { CreateInvoiceParams, CreateInvoiceSchema } from "@/core/params/invoice.param";
 import { handleDownloadPdf } from "@/utils/downloadPdf";
 import { useRef } from "react";
 import ClassicInvoicePreview from "../preview/ClassicInvoicePreview";
 import { invoice_total } from "@/utils/invoiceTotal";
-import { useCreateInvoice } from "@/domain/hooks/useCreateInvoice.hook";
+import { useCreateInvoice } from "@/core/hooks/useCreateInvoice.hook";
 import { useAuth } from "@/contexts/AuthContext";
 
 export const InvoiceForm = () => {

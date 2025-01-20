@@ -1,6 +1,6 @@
 "use client";
 import InvoiceDetail from "@/components/invoice/detail/InvoiceDetail";
-import { useGetInvoiceById } from "@/domain/hooks/useGetInvoiceById.hook";
+import { useGetInvoiceById } from "@/core/hooks/useGetInvoiceById.hook";
 import React from "react";
 interface Props {
   params: Promise<{

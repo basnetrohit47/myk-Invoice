@@ -1,7 +1,7 @@
-import UserDataSource from "@/domain/dataSource/api/user.api";
+import UserDataSource from "@/core/api/user.api";
 import { EditProfileParam, LoginParam } from "../params/user.param";
 import { LoginModel, ProfileModel } from "../models/user.model";
-import UserInterface from "../interface/user.interface";
+import UserInterface from "../repositories/user.interface";
 
 export default class UserService {
   private static _instance: UserService;

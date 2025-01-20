@@ -1,6 +1,6 @@
 
-import { useDeleteInvoiceById } from "@/domain/hooks/useDeleteInvoiceById.hook";
-import { GetInvoiceByIdParam } from "@/domain/params/invoice.param";
+import { useDeleteInvoiceById } from "@/core/hooks/useDeleteInvoiceById.hook";
+import { GetInvoiceByIdParam } from "@/core/params/invoice.param";
 import { useState } from "react";
 
 export const useInvoiceDelete = () => {

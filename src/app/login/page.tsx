@@ -1,8 +1,8 @@
 "use client";
 import { TextFieldInput } from "@/components/formInputs/TextFieldInput";
 import { useAuth } from "@/contexts/AuthContext";
-import { useLoginUser } from "@/domain/hooks/userLoginUser.hook";
-import { LoginParam, LoginSchema } from "@/domain/params/user.param";
+import { useLoginUser } from "@/core/hooks/userLoginUser.hook";
+import { LoginParam, LoginSchema } from "@/core/params/user.param";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";

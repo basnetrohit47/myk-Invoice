@@ -1,7 +1,7 @@
-import InvoiceInterface from "@/domain/interface/invoice.interface";
-import { InvoiceListResponseModel, InvoiceListResponseSchema, InvoiceModel, InvoiceRow, InvoiceRowSchema, InvoiceSchema, InvoiceStatResponse, InvoiceStatResponseSchema } from "@/domain/models/invoice.model";
-import { CreateInvoiceParams, EditInvoiceByIdParam, GetInvoiceByIdParam, GetInvoiceListParam } from "@/domain/params/invoice.param";
-import { apiClient } from "../config/apiClient";
+import { InvoiceListResponseModel, InvoiceListResponseSchema, InvoiceModel, InvoiceRow, InvoiceRowSchema, InvoiceSchema, InvoiceStatResponse, InvoiceStatResponseSchema } from "@/core/models/invoice.model";
+import { CreateInvoiceParams, EditInvoiceByIdParam, GetInvoiceByIdParam, GetInvoiceListParam } from "@/core/params/invoice.param";
+import { apiClient } from "./apiClient";
+import InvoiceInterface from "../repositories/invoice.interface";
 
 export default class InvoiceDataSource extends InvoiceInterface {
     public async createInvoice(params: CreateInvoiceParams): Promise<InvoiceModel | undefined> {

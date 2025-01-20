@@ -1,5 +1,5 @@
 "use client";
-import { useGetInvoiceStat } from "@/domain/hooks/useGetInvoiceStat.hook";
+import { useGetInvoiceStat } from "@/core/hooks/useGetInvoiceStat.hook";
 import React from "react";
 import InvoiceCard from "./InvoiceCard";
 import growth from "../../../../public/growth.svg";

@@ -1,8 +1,8 @@
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import React, { useState } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { useEditInvoiceById } from "@/domain/hooks/useEditInvoiceById.hook";
-import { InvoiceRow } from "@/domain/models/invoice.model";
+import { useEditInvoiceById } from "@/core/hooks/useEditInvoiceById.hook";
+import { InvoiceRow } from "@/core/models/invoice.model";
 interface Props {
   invoice: InvoiceRow;
 }
