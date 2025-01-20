@@ -26,7 +26,6 @@ const ProfilePage = () => {
       reset(data);
     }
   }, [data, reset]);
-  console.log("data in prof", data);
   if (isLoading) {
     return <div>....Logind</div>;
   }
@@ -34,7 +33,6 @@ const ProfilePage = () => {
     return <div>and errorro</div>;
   }
   const onSubmit: SubmitHandler<EditProfileParam> = async (profileData: EditProfileParam) => {
-    console.log("dfasdf", profileData);
     await editProfile(profileData);
   };
 
