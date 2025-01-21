@@ -22,11 +22,13 @@ const NavigationMenu = () => {
         </>
       ) : (
         <>
-          <ThemeToggle />
-          <Button component={Link} href="/login">
-            Login
-          </Button>
-          <Button>Register</Button>
+          <div className="ml-auto flex ">
+            <ThemeToggle />
+            <Button component={Link} href="/login">
+              Login
+            </Button>
+            <Button>Register</Button>
+          </div>
         </>
       )}
     </>
