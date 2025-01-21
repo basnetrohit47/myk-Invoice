@@ -49,6 +49,7 @@ export const InvoiceListResponseSchema = z.object({
 })
 
 export type InvoiceListResponseModel = z.infer<typeof InvoiceListResponseSchema>
+
 export const InvoiceRowSchema = z.object({
   id: z.number(),
   bill_from: z.string().min(2, "at least 1 words required"),
