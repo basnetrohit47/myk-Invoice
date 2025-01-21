@@ -9,11 +9,10 @@ import { FormInputDropdown } from "../../formInputs/DropdownInput";
 import { TextFieldInput } from "@/components/formInputs/TextFieldInput";
 import { EditInvoiceByIdParam, EditInvoiceSchema } from "@/core/params/invoice.param";
 import { useEffect, useRef } from "react";
-import { useGetInvoiceById } from "@/core/hooks/useGetInvoiceById.hook";
-import { useEditInvoiceById } from "@/core/hooks/useEditInvoiceById.hook";
 import { EditItemFields } from "./EditItemFields";
 import { useRouter } from "next/navigation";
 import EditInvoicePreview from "../preview/EditInvoicePreview";
+import { useEditInvoiceById, useGetInvoiceById } from "@/core/hooks/invoice.hook";
 
 interface Props {
   invoiceId: number;

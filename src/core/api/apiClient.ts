@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 
 
-const API_BASE_URL = "https://api.getjuny.com";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://0.0.0.0:5000";
 
 
 interface ApiConfig extends AxiosRequestConfig {

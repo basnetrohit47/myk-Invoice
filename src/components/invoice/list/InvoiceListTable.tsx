@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
 import { DataGrid } from "@mui/x-data-grid";
-import { useGetInvoiceList } from "@/core/hooks/useGetInvoiceList.hook";
 
 import { columns } from "./InvoiceColumn";
+import { useGetInvoiceList } from "@/core/hooks/invoice.hook";
 
 const InvoiceListTable = () => {
   const [paginationModel, setPaginationModel] = useState({ page: 0, pageSize: 10 });

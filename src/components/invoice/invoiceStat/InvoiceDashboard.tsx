@@ -1,11 +1,11 @@
 "use client";
-import { useGetInvoiceStat } from "@/core/hooks/useGetInvoiceStat.hook";
 import React from "react";
 import InvoiceCard from "./InvoiceCard";
 import growth from "../../../../public/growth.svg";
 import paid from "../../../../public/paid.svg";
 import unpaid from "../../../../public/unpaid.svg";
 import ongoing from "../../../../public/pending.svg";
+import { useGetInvoiceStat } from "@/core/hooks/invoice.hook";
 const InvoiceDashboard = () => {
   const { data: invoiceStat } = useGetInvoiceStat();
 

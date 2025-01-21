@@ -1,10 +1,10 @@
 "use client";
 import { TextFieldInput } from "@/components/formInputs/TextFieldInput";
 import { useAuth } from "@/contexts/AuthContext";
-import { useLoginUser } from "@/core/hooks/userLoginUser.hook";
+import { useLoginUser } from "@/core/hooks/user.hook";
 import { LoginParam, LoginSchema } from "@/core/params/user.param";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@mui/material";
+import { Button, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -28,8 +28,8 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center h-[100vh] bg-gray-500">
-        <div className="text-center p-8 w-[40%] bg-slate-200 rounded-xl">
+      <div className="flex justify-center items-center h-[100vh] ">
+        <Paper className="text-center p-8 w-[40%]  rounded-xl " elevation={2}>
           <div className="p-4 mb-4">
             <h2 className="text-[2rem]">Login</h2>
             <p className="text-gray-600">Nice to see you again</p>
@@ -46,7 +46,7 @@ const LoginPage = () => {
               </Button>
             </div>
           </form>
-        </div>
+        </Paper>
       </div>
     </>
   );

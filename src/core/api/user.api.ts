@@ -1,35 +1,43 @@
-import { LoginModel, LoginSchema, Profilechema, ProfileModel } from "@/core/models/user.model";
 import { apiClient } from "./apiClient"
-import { EditProfileParam, LoginParam } from "@/core/params/user.param"
+import { EditProfileParam, LoginParam, RegisterParams } from "@/core/params/user.param"
 import UserInterface from "../repositories/user.interface";
 import { API_ENDPOINTS } from "./apiEndpoints";
 
 
 export default class UserDataSource extends UserInterface {
 
-    public async loginUser(params: LoginParam): Promise<LoginModel | undefined> {
+    public async loginUser(params: LoginParam): Promise<object | undefined> {
         const response = await apiClient({ url: API_ENDPOINTS.PROFILE.LOGIN, method: "POST", data: params });
         if (!response) {
-            return undefined;
+            throw new Error('No data received from the server.');
         }
-        const responseParse = LoginSchema.parse(response);
-        localStorage.setItem("token", responseParse.access);
-        return responseParse
+        return response
 
 
 
     }
+    public async registerUser(params: RegisterParams): Promise<object | undefined> {
 
-    public async getProfile(): Promise<ProfileModel | undefined> {
         try {
-            const data = await apiClient({ url: API_ENDPOINTS.PROFILE.GET_PROFILE, });
-            console.log("data", data);
-            if (!data) {
-                return undefined
+            const response = await apiClient({ url: API_ENDPOINTS.PROFILE.REGISTER, method: "POST", data: params });
+            if (!response) {
+                throw new Error('No data received from the server.');
             }
-            const res = Profilechema.parse(data);
-            console.log("Passs")
-            return res;
+            return response
+        }
+        catch (error) {
+            console.error('Error creating invoice:', error)
+            throw new Error('Failed to create invoice. Please try again later.');
+        }
+    }
+
+    public async getProfile(): Promise<object | undefined> {
+        try {
+            const response = await apiClient({ url: API_ENDPOINTS.PROFILE.GET_PROFILE, });
+            if (!response) {
+                throw new Error('No data received from the server.');
+            }
+            return response
 
         }
         catch (error) {
@@ -38,14 +46,13 @@ export default class UserDataSource extends UserInterface {
 
 
     }
-    public async editProfile(params: EditProfileParam): Promise<ProfileModel | undefined> {
+    public async editProfile(params: EditProfileParam): Promise<object | undefined> {
         try {
-            const data = await apiClient({ url: API_ENDPOINTS.PROFILE.EDIT_PROFILE, method: "PUT", data: params });
-            if (!data) {
-                return undefined
+            const response = await apiClient({ url: API_ENDPOINTS.PROFILE.EDIT_PROFILE, method: "PUT", data: params });
+            if (!response) {
+                throw new Error('No data received from the server.');
             }
-            const res = Profilechema.parse(data);
-            return res;
+            return response
 
         }
         catch (error) {

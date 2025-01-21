@@ -8,7 +8,9 @@ export const LoginSchema = z.object({
 export type LoginParam = z.infer<typeof LoginSchema>;
 
 export const RegisterSchema = z.object({
-    email: z.string().email('Invalid email address').min(1, 'Email is required'),
+    email: z.string().email('Invalid email address'),
+    first_name: z.string().min(2),
+    last_name: z.string().min(2),
     password: z.string().min(3, 'This password is too short. It must contain at least 8 characters').refine(value => !/^\d+$/.test(value), { message: 'This password is entirely numeric.' }),
     password2: z.string()
 }).refine((data) => data.password === data.password2, {
@@ -31,4 +33,5 @@ export const EditProfileSchema = z.object({
     currency: z.string().optional().nullable()
 })
 export type EditProfileParam = z.infer<typeof EditProfileSchema>
+
 

@@ -1,6 +1,6 @@
 import UserDataSource from "@/core/api/user.api";
-import { EditProfileParam, LoginParam } from "../params/user.param";
-import { LoginModel, ProfileModel } from "../models/user.model";
+import { EditProfileParam, LoginParam, RegisterParams } from "../params/user.param";
+import { LoginModel, LoginSchema, Profilechema, ProfileModel, RegisterModel, RegisterResponseSchema } from "../models/user.model";
 import UserInterface from "../repositories/user.interface";
 
 export default class UserService {
@@ -19,17 +19,28 @@ export default class UserService {
 
 
 
+  public async registerUser(params: RegisterParams): Promise<RegisterModel | undefined> {
+    const response = await this.datasource.registerUser(params);
+    return RegisterResponseSchema.parse(response);
 
-  public loginUser(params: LoginParam): Promise<LoginModel | undefined> {
-    return this.datasource.loginUser(params)
   }
-  public editProfile(params: EditProfileParam): Promise<ProfileModel | undefined> {
-    return this.datasource.editProfile(params)
+
+  public async loginUser(params: LoginParam): Promise<LoginModel | undefined> {
+    const response = await this.datasource.loginUser(params)
+    const responseParse = LoginSchema.parse(response);
+    localStorage.setItem("token", responseParse.access);
+    return responseParse
+
   }
-  public getProfile(): Promise<ProfileModel | undefined> {
-    console.log("called")
-    const data = this.datasource.getProfile()
-    console.log("ddasdfasdf", data)
-    return data
+  public async editProfile(params: EditProfileParam): Promise<ProfileModel | undefined> {
+    const response = await this.datasource.editProfile(params)
+    return Profilechema.parse(response);
+
+  }
+  public async getProfile(): Promise<ProfileModel | undefined> {
+
+    const respnose = await this.datasource.getProfile();
+    return Profilechema.parse(respnose);
+
   }
 }

@@ -1,13 +1,12 @@
 "use client";
 import { TextFieldInput } from "@/components/formInputs/TextFieldInput";
 import { WithAuth } from "@/hoc/withAuth";
-import { useEditProfile } from "@/core/hooks/useEditProfile.hook";
-import { useGetProfile } from "@/core/hooks/useGetProfile.hook";
 import { EditProfileParam, EditProfileSchema } from "@/core/params/user.param";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Paper, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useEditProfile, useGetProfile } from "@/core/hooks/user.hook";
 
 const ProfilePage = () => {
   const { data, isLoading, isError } = useGetProfile();

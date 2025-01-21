@@ -13,8 +13,8 @@ import { handleDownloadPdf } from "@/utils/downloadPdf";
 import { useRef } from "react";
 import ClassicInvoicePreview from "../preview/ClassicInvoicePreview";
 import { invoice_total } from "@/utils/invoiceTotal";
-import { useCreateInvoice } from "@/core/hooks/useCreateInvoice.hook";
 import { useAuth } from "@/contexts/AuthContext";
+import { useCreateInvoice } from "@/core/hooks/invoice.hook";
 
 export const InvoiceForm = () => {
   const today = new Date();

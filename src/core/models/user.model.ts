@@ -19,6 +19,16 @@ export const Profilechema = z.object({
 });
 export type ProfileModel = z.infer<typeof Profilechema>;
 
+export const UserSchema = z.object({
+    email: z.string(),
+    first_name: z.string(),
+    last_name: z.string()
+})
+export const RegisterResponseSchema = z.object({
+    user: UserSchema
+})
+
+export type RegisterModel = z.infer<typeof RegisterResponseSchema>;
 
 
 

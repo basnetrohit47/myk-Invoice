@@ -1,5 +1,5 @@
 
-import { useDeleteInvoiceById } from "@/core/hooks/useDeleteInvoiceById.hook";
+import { useDeleteInvoiceById } from "@/core/hooks/invoice.hook";
 import { GetInvoiceByIdParam } from "@/core/params/invoice.param";
 import { useState } from "react";
 

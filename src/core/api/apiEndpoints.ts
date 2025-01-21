@@ -10,7 +10,8 @@ export const API_ENDPOINTS = {
     PROFILE: {
         LOGIN: `/login`,
         GET_PROFILE: `/profile`,
-        EDIT_PROFILE: `/profile`
+        EDIT_PROFILE: `/profile`,
+        REGISTER: `/register`
     }
 
 }
