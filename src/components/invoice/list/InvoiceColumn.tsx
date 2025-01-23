@@ -9,6 +9,7 @@ import ActionMenu from "./ActionMenu";
 import InvoiceConfirmModal from "../modal/InvoiceConfirmModal";
 import { useInvoiceDelete } from "@/hooks/useInvoiceDelete";
 import amountFormat from "@/utils/amountFormat";
+import { formatDate } from "@/utils/dateFormat";
 const getAvatarColor = (value: string) => {
   const colors = [deepPurple[500], green[500], blue[500], red[500], orange[500]];
   const hash = value.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
@@ -69,9 +70,9 @@ export const columns: GridColDef<InvoiceRow>[] = [
       </>
     ),
   },
-  { field: "issue_date", headerName: "Issue date", minWidth: 130, flex: 0.2 },
-  { field: "due_date", headerName: "Due date", minWidth: 130, flex: 0.2 },
-  { field: "amount", headerName: "Invoice amount", minWidth: 160, flex: 0.2, renderCell: (params) => amountFormat(params.value) },
+  { field: "issue_date", headerName: "Issue date", minWidth: 130, flex: 0.2, renderCell: (params) => formatDate(params.value) },
+  { field: "due_date", headerName: "Due date", minWidth: 130, flex: 0.2, renderCell: (params) => formatDate(params.value) },
+  { field: "amount", headerName: "Invoice amount", minWidth: 160, flex: 0.2, renderCell: (params) => amountFormat(params.value, params.row.currency) },
   {
     field: "status",
     headerName: "Status",
@@ -85,7 +86,7 @@ export const columns: GridColDef<InvoiceRow>[] = [
       </>
     ),
   },
-  { field: "paid_amount", headerName: "Paid Amount", minWidth: 130, flex: 0.2, renderCell: (params) => amountFormat(params.value) },
+  { field: "paid_amount", headerName: "Paid Amount", minWidth: 130, flex: 0.2, renderCell: (params) => amountFormat(params.value, params.row.currency) },
   {
     field: "action",
     headerName: "Action",

@@ -65,7 +65,7 @@ export const useEditInvoiceById = () => {
 
 export const useGetInvoiceById = (params: GetInvoiceByIdParam) => {
     return useQuery({
-        queryKey: ["invoiceById"],
+        queryKey: ["invoiceList", params.id],
         queryFn: () => service.getInvoiceById(params)
     })
 }

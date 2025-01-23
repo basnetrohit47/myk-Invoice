@@ -1,8 +1,6 @@
 "use client";
 import { TextareaInput } from "../../formInputs/TextareaInput";
-import { Box, Button, Paper, Typography } from "@mui/material";
-import UploadIcon from "@mui/icons-material/Upload";
-
+import { Box, Button, Paper } from "@mui/material";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ItemFields } from "./ItemFields";
@@ -15,6 +13,7 @@ import ClassicInvoicePreview from "../preview/ClassicInvoicePreview";
 import { invoice_total } from "@/utils/invoiceTotal";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCreateInvoice } from "@/core/hooks/invoice.hook";
+import LogoUpload from "./LogoUpload";
 
 export const InvoiceForm = () => {
   const today = new Date();
@@ -33,12 +32,13 @@ export const InvoiceForm = () => {
     },
   });
   const onSubmit: SubmitHandler<CreateInvoiceParams> = async (formData) => {
-    handleDownloadPdf(printRef);
     if (isAuthenticated) {
       await createInvoice(formData);
+    } else {
+      handleDownloadPdf(printRef);
     }
   };
-  console.log("render for");
+
   const formData = watch();
   const { total, subTotal } = invoice_total(formData);
 
@@ -52,13 +52,7 @@ export const InvoiceForm = () => {
             <Paper className="px-8 py-12 m-2   rounded-lg w-[65%]">
               <div className="flex gap-8 ">
                 <div className="flex flex-col gap-6 w-[50%]">
-                  <div className=" rounded-md cursor-pointer border-2 border-dotted flex justify-center">
-                    <div className="p-4 text-center">
-                      <UploadIcon />
-                      <Typography>Upload logo</Typography>
-                      <p className="text-[8px]">240 x 240 pixels @ 72 DPI, Maximum size of 1MB.</p>
-                    </div>
-                  </div>
+                  <LogoUpload />
                   <TextareaInput name="bill_to" label="who is this for" control={control} required />
                   <TextareaInput name="shipping_to" label="add shipping details" control={control} />
                 </div>
@@ -103,7 +97,7 @@ export const InvoiceForm = () => {
                           { label: formData.currency || "$", value: "amount" },
                         ]}
                         variant="outlined"
-                        name="tax_sign"
+                        name="discount_sign"
                         control={control}
                         sx={{
                           "& .MuiOutlinedInput-root": {
@@ -181,10 +175,10 @@ export const InvoiceForm = () => {
                     name="currency"
                     size="small"
                     control={control}
-                    sx={{ maxWidth: "100px" }}
+                    sx={{ maxWidth: "110px" }}
                     options={[
-                      { label: "€", value: "€" },
-                      { label: "$", value: "$" },
+                      { label: "€ (EUR)", value: "USD" },
+                      { label: "$ (USD)", value: "EUR" },
                     ]}
                   />
                 </div>

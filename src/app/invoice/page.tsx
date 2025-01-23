@@ -5,14 +5,18 @@ import Link from "next/link";
 import AddIcon from "@mui/icons-material/Add";
 import InvoiceDashboard from "@/components/invoice/invoiceStat/InvoiceDashboard";
 import { useGetProfile } from "@/core/hooks/user.hook";
+import { getStoreValue } from "@/utils/localStorageUtil";
 const InvoicePage = () => {
   const { data: profile } = useGetProfile();
+  const getStoredTheme = getStoreValue<string>("theme");
+
   return (
     <>
       <div className="mx-20 my-2">
         <div>
           <Typography variant="h5" color="text.primary">
-            Hello {profile?.first_name}{" "}
+            Hello {profile?.first_name}
+            {getStoredTheme}
           </Typography>
         </div>
         <div className="py-2 flex w-full justify-around gap-6">

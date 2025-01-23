@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { CreateProductSchema, EditProductSchema } from "./product.param";
 import { ImageSchema } from "../models/invoice.model";
+import { numberTransform } from "@/utils/zodUtils";
 
 export const CreateInvoiceSchema = z.object({
     bill_from: z.string().min(2, "at least 2 words required"),
@@ -11,16 +12,16 @@ export const CreateInvoiceSchema = z.object({
     bill_to: z.string(),
     shipping_to: z.string().optional().nullable(),
     tax_sign: z.enum(["amount", "percent"]).optional().nullable(),
-    tax: z.number().nullable().optional(),
-    discount: z.number().optional().nullable(),
+    tax: numberTransform.nullable().optional(),
+    discount: numberTransform.optional().nullable(),
     discount_sign: z.enum(["amount", "percent"]).optional().nullable(),
-    shipping_cost: z.number().optional().nullable(),
-    paid_amount: z.number().optional().nullable(),
+    shipping_cost: numberTransform.optional().nullable(),
+    paid_amount: numberTransform.optional().nullable(),
     products: z.array(CreateProductSchema).nonempty("At least one product is required"),
     note: z.string().optional().nullable(),
     terms: z.string().optional().nullable(),
     bank: z.string().optional().nullable(),
-    amount: z.number().optional(),
+    amount: numberTransform.optional(),
     logo: ImageSchema,
     status: z.string().optional(),
     currency: z.string().optional(),

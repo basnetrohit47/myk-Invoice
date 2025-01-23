@@ -1,7 +1,10 @@
+"use client";
 import { CreateInvoiceParams } from "@/core/params/invoice.param";
 import { Paper, Typography } from "@mui/material";
 import { forwardRef } from "react";
 import { InvoiceProductComponent } from "./InvoiceProduct";
+import { useGetLogo } from "@/core/hooks/logo.hook";
+import Image from "next/image";
 
 interface Props {
   formData: CreateInvoiceParams;
@@ -10,6 +13,7 @@ interface Props {
 }
 
 const ClassicInvoicePreview = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { data: logo } = useGetLogo();
   const { formData, subTotal, total } = props;
   let discount = formData.discount;
   if (formData.discount_sign == "percent" && discount) {
@@ -24,9 +28,13 @@ const ClassicInvoicePreview = forwardRef<HTMLDivElement, Props>((props, ref) => 
     <>
       <Paper className="p-4  m-4 rounded-xl min-h-[60vh]">
         <div id="invoice-preview" ref={ref}>
-          <div className="text-right">
-            <Typography variant="h4">Invoice</Typography>
+          <div className="flex p-4">
+            <div>{logo && <Image width={30} src={logo} alt="" height={30} />}</div>
+            <div className="ml-auto">
+              <Typography variant="h4">Invoice</Typography>
+            </div>
           </div>
+
           <div className="flex m-4" id="invoice-field">
             <div className="text-[0.6rem] text-left flex flex-col gap-3">
               <div>

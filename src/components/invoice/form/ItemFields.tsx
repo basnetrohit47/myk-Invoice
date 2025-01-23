@@ -36,6 +36,11 @@ export const ItemFields = ({ control }: Props) => {
     const rate = products[index].rate || 0;
     return quantity * rate;
   };
+  const handleRemove = (index: number) => {
+    if (fields.length > 1) {
+      remove(index);
+    }
+  };
   return (
     <>
       <TableContainer component={Paper} elevation={1}>
@@ -55,18 +60,19 @@ export const ItemFields = ({ control }: Props) => {
                   <TextareaInput name={`products.${index}.name`} label="Describe the item" control={control} required />
                 </TableCell>
                 <TableCell sx={{ border: "none" }}>
-                  <TextFieldInput name={`products.${index}.quantity`} placeholder="0" control={control} required />
+                  <TextFieldInput type="number" name={`products.${index}.quantity`} placeholder="0" control={control} required />
                 </TableCell>
                 <TableCell sx={{ border: "none" }}>
-                  <TextFieldInput name={`products.${index}.rate`} placeholder="0" control={control} required />
+                  <TextFieldInput type="number" name={`products.${index}.rate`} placeholder="0" control={control} required />
                 </TableCell>
                 <TableCell sx={{ border: "none", width: "20%" }}>
                   <div className="flex items-center w-full">
                     <p className="p-4 text-right">{calculateAmount(index)}</p>
-
-                    <button className="ml-auto" onClick={() => remove(index)}>
-                      <ClearIcon fontSize="small" />
-                    </button>
+                    {fields.length > 1 && (
+                      <button type="button" className="ml-auto" onClick={() => handleRemove(index)}>
+                        <ClearIcon fontSize="small" />
+                      </button>
+                    )}
                   </div>
                 </TableCell>
               </TableRow>

@@ -45,7 +45,7 @@ export default class InvoiceService {
     }
     public async getInvoiceById(params: GetInvoiceByIdParam): Promise<InvoiceModel | undefined> {
 
-        const invoiceDetail = this.datasource.getInvoiceById(params).then(serializeInvoiceResponse)
+        const invoiceDetail = await this.datasource.getInvoiceById(params).then(serializeInvoiceResponse)
 
         return InvoiceSchema.parse(invoiceDetail)
 

@@ -1,7 +1,9 @@
-import { Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { forwardRef } from "react";
 import { InvoiceProductComponent } from "./InvoiceProduct";
 import { InvoiceModel } from "@/core/models/invoice.model";
+import { useGetLogo } from "@/core/hooks/logo.hook";
+import Image from "next/image";
 
 interface Props {
   invoice: InvoiceModel;
@@ -10,6 +12,8 @@ interface Props {
 }
 
 const InvoiceDetail = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { data: logo } = useGetLogo();
+
   const { invoice, subTotal, total } = props;
   let discount = invoice.discount;
   if (invoice.discount_sign == "percent" && discount) {
@@ -22,92 +26,97 @@ const InvoiceDetail = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   return (
     <>
-      <div className="p-4 border-2 m-4 border-gray-200 rounded-xl min-h-[60vh]">
-        <div id="invoice-preview" ref={ref}>
-          <div className="text-right">
-            <Typography variant="h4">Invoice</Typography>
-          </div>
-          <div className="flex m-4" id="invoice-field">
-            <div className="text-[0.6rem] text-left flex flex-col gap-3">
-              <div>
-                <p>Bill From</p>
-                <p>{invoice.bill_from}</p>
-              </div>
-              <div>
-                <p>Bill To</p>
-                <p>{invoice.bill_to}</p>
-              </div>
-              <div>
-                <p>Shipping to </p>
-                <p>{invoice.shipping_to}</p>
+      <div className="flex justify-center">
+        <Paper className="p-4 border-2 m-4 border-gray-200 rounded-xl min-h-[60vh]  w-[80%]">
+          <div id="invoice-preview " ref={ref}>
+            <div className="flex p-4">
+              <div>{logo && <Image width={30} src={logo} alt="" height={30} />}</div>
+              <div className="ml-auto">
+                <Typography variant="h4">Invoice</Typography>
               </div>
             </div>
-            <div className="mt-auto ml-auto text-[0.6rem] flex flex-col gap-2 ">
-              <div className="flex gap-4">
-                <p>Invoice number</p>
-                <p className="ml-auto">#{invoice.number}</p>
+            <div className="flex m-4" id="invoice-field">
+              <div className="text-[0.6rem] text-left flex flex-col gap-3">
+                <div>
+                  <p>Bill From</p>
+                  <p>{invoice.bill_from}</p>
+                </div>
+                <div>
+                  <p>Bill To</p>
+                  <p>{invoice.bill_to}</p>
+                </div>
+                <div>
+                  <p>Shipping to </p>
+                  <p>{invoice.shipping_to}</p>
+                </div>
               </div>
-              <div className="flex">
-                <p>Invoice date</p>
-                <p className="ml-auto">{invoice.issue_date}</p>
-              </div>
-              <div className="flex">
-                <p>Due date</p>
-                <p className="ml-auto">{invoice.due_date}</p>
+              <div className="mt-auto ml-auto text-[0.6rem] flex flex-col gap-2 ">
+                <div className="flex gap-4">
+                  <p>Invoice number</p>
+                  <p className="ml-auto">#{invoice.number}</p>
+                </div>
+                <div className="flex">
+                  <p>Invoice date</p>
+                  <p className="ml-auto">{invoice.issue_date}</p>
+                </div>
+                <div className="flex">
+                  <p>Due date</p>
+                  <p className="ml-auto">{invoice.due_date}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <InvoiceProductComponent product={invoice.products} />
-          <div className="flex flex-col items-end gap-4 mt-4 text-[0.6rem]">
-            <div className="flex gap-6">
-              <p>Subtotal</p>
-              <p>{subTotal}</p>
-            </div>
-            {invoice.tax && (
+            <InvoiceProductComponent product={invoice.products} />
+            <div className="flex flex-col items-end gap-4 mt-4 text-[0.6rem]">
               <div className="flex gap-6">
-                <p>Tax</p>
-                <p>{tax}</p>
+                <p>Subtotal</p>
+                <p>{subTotal}</p>
               </div>
-            )}
-            {invoice.discount && (
-              <div className="flex gap-6">
-                <p>Discount</p>
-                <p>{discount}</p>
-              </div>
-            )}
-            {invoice.shipping_cost && (
-              <div className="flex gap-6">
-                <p>Shiping cost</p>
-                <p>{invoice.shipping_cost}</p>
-              </div>
-            )}
+              {invoice.tax && (
+                <div className="flex gap-6">
+                  <p>Tax</p>
+                  <p>{tax}</p>
+                </div>
+              )}
+              {invoice.discount && (
+                <div className="flex gap-6">
+                  <p>Discount</p>
+                  <p>{discount}</p>
+                </div>
+              )}
+              {invoice.shipping_cost && (
+                <div className="flex gap-6">
+                  <p>Shiping cost</p>
+                  <p>{invoice.shipping_cost}</p>
+                </div>
+              )}
 
-            <div className="flex gap-6">
-              <p className="font-semibold">Total</p>
-              <p>{total}</p>
+              <div className="flex gap-6">
+                <p className="font-semibold">Total</p>
+                <p>{total}</p>
+              </div>
+            </div>
+            <div className="text-[0.6rem] text-left flex flex-col gap-2">
+              {invoice.note && (
+                <div>
+                  <p className="font-semibold">Note</p>
+                  <p>{invoice.note}</p>
+                </div>
+              )}
+              {invoice.bank && (
+                <div>
+                  <p className="font-semibold">Bank details</p>
+                  <p>{invoice.bank}</p>
+                </div>
+              )}
+              {invoice.terms && (
+                <div>
+                  <p className="font-semibold">Terms & Conditons</p>
+                  <p>{invoice.terms}</p>
+                </div>
+              )}
             </div>
           </div>
-          <div className="text-[0.6rem] text-left flex flex-col gap-2">
-            {invoice.note && (
-              <div>
-                <p className="font-semibold">Note</p>
-                <p>{invoice.note}</p>
-              </div>
-            )}
-            {invoice.bank && (
-              <div>
-                <p className="font-semibold">Bank details</p>
-                <p>{invoice.bank}</p>
-              </div>
-            )}
-            {invoice.terms && (
-              <div>
-                <p className="font-semibold">Terms & Conditons</p>
-                <p>{invoice.terms}</p>
-              </div>
-            )}
-          </div>
-        </div>
+        </Paper>
       </div>
     </>
   );
