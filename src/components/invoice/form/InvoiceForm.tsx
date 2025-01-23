@@ -28,7 +28,7 @@ export const InvoiceForm = () => {
       due_date: "default",
       tax_sign: "amount",
       discount_sign: "amount",
-      currency: "$",
+      currency: "USD",
     },
   });
   const onSubmit: SubmitHandler<CreateInvoiceParams> = async (formData) => {
@@ -168,7 +168,7 @@ export const InvoiceForm = () => {
               <div>
                 <div className="flex justify-end gap-2 ">
                   <Button type="submit" variant="contained" className="!bg-green-600">
-                    Submit
+                    {isAuthenticated ? "Submit" : "Download"}
                   </Button>
                   <FormInputDropdown
                     variant="outlined"
