@@ -37,7 +37,7 @@ const ProfileAvatar = () => {
             },
           }}
         >
-          <Avatar sx={{ bgcolor: deepOrange[500] }}>{profile?.first_name?.charAt(0)}</Avatar>
+          <Avatar sx={{ bgcolor: deepOrange[500] }}>{profile?.firstName?.charAt(0)}</Avatar>
           <ArrowDropDownIcon />
         </IconButton>
 

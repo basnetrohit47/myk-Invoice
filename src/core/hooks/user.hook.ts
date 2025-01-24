@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { EditProfileParam, LoginParam, RegisterParams } from "../params/user.param";
+import { EditProfileParam, LoginParam, RegisterParams } from "../entities/params/user.param";
 import UserService from "../services/user.service";
 
 const service = UserService.getInstance();

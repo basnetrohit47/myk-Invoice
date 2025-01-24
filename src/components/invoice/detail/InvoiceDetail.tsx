@@ -1,7 +1,7 @@
 import { Paper, Typography } from "@mui/material";
 import { forwardRef } from "react";
 import { InvoiceProductComponent } from "./InvoiceProduct";
-import { InvoiceModel } from "@/core/models/invoice.model";
+import { InvoiceModel } from "@/core/entities/models/invoice.model";
 import { useGetLogo } from "@/core/hooks/logo.hook";
 import Image from "next/image";
 

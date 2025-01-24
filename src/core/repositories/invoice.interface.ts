@@ -1,4 +1,4 @@
-import { CreateInvoiceParams, EditInvoiceByIdParam, GetInvoiceByIdParam, GetInvoiceListParam } from "../params/invoice.param";
+import { CreateInvoiceParams, EditInvoiceByIdParam, GetInvoiceByIdParam, GetInvoiceListParam } from "../entities/params/invoice.param";
 
 export default abstract class InvoiceInterface {
     public abstract createInvoice(params?: CreateInvoiceParams): Promise<object | undefined>

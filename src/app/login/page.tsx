@@ -2,7 +2,7 @@
 import { TextFieldInput } from "@/components/formInputs/TextFieldInput";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLoginUser } from "@/core/hooks/user.hook";
-import { LoginParam, LoginSchema } from "@/core/params/user.param";
+import { LoginParam, LoginSchema } from "@/core/entities/params/user.param";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";

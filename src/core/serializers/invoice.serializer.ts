@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { InvoiceListResponseModel, InvoiceModel, InvoiceStatResponse } from "../models/invoice.model";
-import { CreateInvoiceParams, EditInvoiceByIdParam, GetInvoiceListParam } from "../params/invoice.param";
+import { InvoiceListResponseModel, InvoiceModel, InvoiceStatResponse } from "../entities/models/invoice.model";
+import { CreateInvoiceParams, EditInvoiceByIdParam, GetInvoiceListParam } from "../entities/params/invoice.param";
 
 export const serializeInvoiceListParams = (params: GetInvoiceListParam) => {
     return {

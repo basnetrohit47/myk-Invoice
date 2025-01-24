@@ -1,5 +1,5 @@
 "use client";
-import { CreateInvoiceParams } from "@/core/params/invoice.param";
+import { CreateInvoiceParams } from "@/core/entities/params/invoice.param";
 import { Paper, Typography } from "@mui/material";
 import { forwardRef } from "react";
 import { InvoiceProductComponent } from "./InvoiceProduct";

@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ItemFields } from "./ItemFields";
 import { FormInputDropdown } from "../../formInputs/DropdownInput";
 import { TextFieldInput } from "@/components/formInputs/TextFieldInput";
-import { CreateInvoiceParams, CreateInvoiceSchema } from "@/core/params/invoice.param";
+import { CreateInvoiceParams, CreateInvoiceSchema } from "@/core/entities/params/invoice.param";
 import { handleDownloadPdf } from "@/utils/downloadPdf";
 import { useRef } from "react";
 import ClassicInvoicePreview from "../preview/ClassicInvoicePreview";

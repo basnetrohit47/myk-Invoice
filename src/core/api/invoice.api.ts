@@ -1,4 +1,4 @@
-import { CreateInvoiceParams, EditInvoiceByIdParam, GetInvoiceByIdParam, GetInvoiceListParam } from "@/core/params/invoice.param";
+import { CreateInvoiceParams, EditInvoiceByIdParam, GetInvoiceByIdParam, GetInvoiceListParam } from "@/core/entities/params/invoice.param";
 import { apiClient } from "./apiClient";
 import InvoiceInterface from "../repositories/invoice.interface";
 import { API_ENDPOINTS } from "./apiEndpoints";

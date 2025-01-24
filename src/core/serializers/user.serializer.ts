@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ProfileModel } from "../models/user.model";
+import { ProfileModel } from "../entities/models/user.model";
 
 export const serializedProfileResponse = (data: any): ProfileModel => {
     return {

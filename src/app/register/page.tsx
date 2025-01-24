@@ -1,7 +1,7 @@
 "use client";
 import { TextFieldInput } from "@/components/formInputs/TextFieldInput";
 import { useRegisterUser } from "@/core/hooks/user.hook";
-import { RegisterParams, RegisterSchema } from "@/core/params/user.param";
+import { RegisterParams, RegisterSchema } from "@/core/entities/params/user.param";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";

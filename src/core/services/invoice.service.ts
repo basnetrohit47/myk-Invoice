@@ -1,9 +1,11 @@
 
 import InvoiceDataSource from "@/core/api/invoice.api";
-import { CreateInvoiceParams, EditInvoiceByIdParam, GetInvoiceByIdParam, GetInvoiceListParam } from "../params/invoice.param";
-import { InvoiceListResponseModel, InvoiceListResponseSchema, InvoiceModel, InvoiceRow, InvoiceRowSchema, InvoiceSchema, InvoiceStatResponse, InvoiceStatResponseSchema } from "../models/invoice.model";
+import { CreateInvoiceParams, EditInvoiceByIdParam, GetInvoiceByIdParam, GetInvoiceListParam } from "../entities/params/invoice.param";
+import { InvoiceListResponseModel, InvoiceListResponseSchema, InvoiceModel, InvoiceRow, InvoiceRowSchema, InvoiceSchema, InvoiceStatResponse, InvoiceStatResponseSchema } from "../entities/models/invoice.model";
 import InvoiceInterface from "../repositories/invoice.interface";
 import { serializeCreateInvoiceRequest, serializeInvoiceListParams, serializeInvoiceListResponse, serializeInvoiceResponse, serializeInvoiceStatResponse } from "../serializers/invoice.serializer";
+import { z } from "zod";
+import { InputParseError } from "../entities/errors/common";
 
 export default class InvoiceService {
     private static _instance: InvoiceService;
@@ -18,103 +20,67 @@ export default class InvoiceService {
         private datasource: InvoiceInterface = new InvoiceDataSource(),
     ) { }
 
+
+    private parseWithCustomError<T>(
+        schema: z.ZodSchema<T>,
+        data: unknown,
+        schemaName: string
+    ): T {
+        const result = schema.safeParse(data);
+        if (!result.success) {
+            console.error(`${schemaName} validation failed`, result.error.errors);
+            throw new InputParseError(`${schemaName} validation error`);
+        }
+        return result.data;
+    }
+
     public async createInvoice(params: CreateInvoiceParams): Promise<InvoiceModel | undefined> {
-        try {
-            const requestData = serializeCreateInvoiceRequest(params);
-            const responseData = await this.datasource.createInvoice(requestData);
-            const serializedData = serializeInvoiceResponse(responseData);
-            return InvoiceSchema.parse(serializedData)
-        }
-        catch (error) {
-            console.error(error)
-            throw new Error('Validation error');
-        }
+        const requestData = serializeCreateInvoiceRequest(params);
+        const responseData = await this.datasource.createInvoice(requestData);
+        const serializedData = serializeInvoiceResponse(responseData);
+        return this.parseWithCustomError(InvoiceSchema, serializedData, "InvoiceSchema")
 
 
 
 
     }
     public async getInvoiceList(params: GetInvoiceListParam): Promise<InvoiceListResponseModel | undefined> {
-        try {
-
-            const invoiceListParams = serializeInvoiceListParams(params)
-
-            const invoiceList = await this.datasource.getInvoiceList(invoiceListParams); // Call the API
-
-            const serilizedData = serializeInvoiceListResponse(invoiceList);
-
-            return InvoiceListResponseSchema.parse(serilizedData)
-
-        }
-        catch (error) {
-            console.error(error)
-            throw new Error('Validation error')
-
-        }
-
-
-
+        const invoiceListParams = serializeInvoiceListParams(params)
+        const invoiceList = await this.datasource.getInvoiceList(invoiceListParams); // Call the API
+        const serializedData = serializeInvoiceListResponse(invoiceList);
+        return this.parseWithCustomError(InvoiceListResponseSchema, serializedData, "InvoiceListResponseSchema")
 
     }
     public async getInvoiceStat(): Promise<InvoiceStatResponse | undefined> {
-        try {
-            const invoiceStat = await this.datasource.getInvoiceStat().then(serializeInvoiceStatResponse)
+        const invoiceStat = await this.datasource.getInvoiceStat().then(serializeInvoiceStatResponse)
+        return this.parseWithCustomError(InvoiceStatResponseSchema, invoiceStat, "InvoiceStatResponseSchema")
 
-            return InvoiceStatResponseSchema.parse(invoiceStat)
 
-        }
-        catch (error) {
-            console.error(error)
-            throw new Error('Validation error')
-
-        }
 
 
     }
     public async getInvoiceById(params: GetInvoiceByIdParam): Promise<InvoiceModel | undefined> {
-        try {
-            const invoiceDetail = await this.datasource.getInvoiceById(params).then(serializeInvoiceResponse)
+        const invoiceDetail = await this.datasource.getInvoiceById(params).then(serializeInvoiceResponse)
+        return this.parseWithCustomError(InvoiceSchema, invoiceDetail, "InvoiceSchema")
 
-            return InvoiceSchema.parse(invoiceDetail)
 
-        }
-        catch (error) {
-            console.error(error)
-            throw new Error('Validation error')
-
-        }
 
 
 
     }
     public async deleteInvoiceById(params: GetInvoiceByIdParam): Promise<InvoiceModel | undefined> {
 
-        try {
-            const response = await this.datasource.deleteInovoiceById(params).then(serializeInvoiceResponse)
+        const response = await this.datasource.deleteInovoiceById(params).then(serializeInvoiceResponse)
+        return this.parseWithCustomError(InvoiceSchema, response, "InvoiceSchema")
 
-            return InvoiceSchema.parse(response)
-
-        }
-        catch (error) {
-            console.error(error)
-            throw new Error('Validation error')
-
-        }
 
 
     }
     public async editInvoiceById(params: EditInvoiceByIdParam): Promise<InvoiceRow | undefined> {
-        try {
-            const response = await this.datasource.editInvoiceById(params).then(serializeInvoiceResponse)
+        const response = await this.datasource.editInvoiceById(params).then(serializeInvoiceResponse)
+        return this.parseWithCustomError(InvoiceRowSchema, response, "InvoiceRowSchema")
 
-            return InvoiceRowSchema.parse(response)
 
-        }
-        catch (error) {
-            console.error(error)
-            throw new Error('Validation error')
-
-        }
 
     }
 

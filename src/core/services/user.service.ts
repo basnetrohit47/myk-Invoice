@@ -1,8 +1,10 @@
 import UserDataSource from "@/core/api/user.api";
-import { EditProfileParam, LoginParam, RegisterParams } from "../params/user.param";
-import { LoginModel, LoginSchema, Profilechema, ProfileModel, RegisterModel, RegisterResponseSchema } from "../models/user.model";
+import { EditProfileParam, LoginParam, RegisterParams } from "../entities/params/user.param";
+import { LoginModel, LoginSchema, Profilechema, ProfileModel, RegisterModel, RegisterResponseSchema } from "../entities/models/user.model";
 import UserInterface from "../repositories/user.interface";
-
+import { serializedProfileResponse } from "../serializers/user.serializer";
+import { z } from "zod";
+import { InputParseError } from "../entities/errors/common";
 export default class UserService {
   private static _instance: UserService;
   public static getInstance(): UserService {
@@ -17,17 +19,25 @@ export default class UserService {
   ) { }
 
 
+  private parseWithCustomError<T>(
+    schema: z.ZodSchema<T>,
+    data: unknown,
+    schemaName: string
+  ): T {
+    const result = schema.safeParse(data);
+    if (!result.success) {
+      console.error(`${schemaName} validation failed`, result.error.errors);
+      throw new InputParseError(`${schemaName} validation error`);
+    }
+    return result.data;
+  }
+
+
 
 
   public async registerUser(params: RegisterParams): Promise<RegisterModel | undefined> {
-    try {
-      const response = await this.datasource.registerUser(params);
-      return RegisterResponseSchema.parse(response);
-    }
-    catch (error) {
-      console.error(error)
-      throw new Error('Profile data validation');
-    }
+    const response = await this.datasource.registerUser(params);
+    return this.parseWithCustomError(RegisterResponseSchema, response, "RegisterResponseSchema")
 
 
 
@@ -35,42 +45,22 @@ export default class UserService {
   }
 
   public async loginUser(params: LoginParam): Promise<LoginModel | undefined> {
-    try {
-      const response = await this.datasource.loginUser(params)
-      const responseParse = LoginSchema.parse(response);
-      localStorage.setItem("token", responseParse.access);
-      return responseParse
-    }
-    catch (error) {
-      console.error(error)
-      throw new Error('Profile data validation');
-    }
+    const response = await this.datasource.loginUser(params)
+    return this.parseWithCustomError(LoginSchema, response, "LoginSchema")
 
 
   }
   public async editProfile(params: EditProfileParam): Promise<ProfileModel | undefined> {
-    try {
-      const response = await this.datasource.editProfile(params)
-      return Profilechema.parse(response);
-    }
-    catch (error) {
-      console.error(error)
-      throw new Error('Profile data validation');
-    }
+    const response = await this.datasource.editProfile(params)
+    return this.parseWithCustomError(Profilechema, response, "ProfileSchema")
+
 
 
   }
   public async getProfile(): Promise<ProfileModel | undefined> {
-
     const respnose = await this.datasource.getProfile();
-    try {
-      const parsedResponse = Profilechema.parse(respnose);
-      return parsedResponse;
-    }
-    catch (error) {
-      console.error(error)
-      throw new Error('Profile data validation');
-    }
+    const serializedData = serializedProfileResponse(respnose)
+    return this.parseWithCustomError(Profilechema, serializedData, "ProfileSchema")
 
 
   }

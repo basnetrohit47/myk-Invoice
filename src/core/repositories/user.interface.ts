@@ -1,4 +1,4 @@
-import { EditProfileParam, LoginParam, RegisterParams } from "../params/user.param";
+import { EditProfileParam, LoginParam, RegisterParams } from "../entities/params/user.param";
 
 export default abstract class UserInterface {
     public abstract loginUser(params: LoginParam): Promise<object | undefined>;

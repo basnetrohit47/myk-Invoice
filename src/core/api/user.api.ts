@@ -1,5 +1,5 @@
 import { apiClient } from "./apiClient"
-import { EditProfileParam, LoginParam, RegisterParams } from "@/core/params/user.param"
+import { EditProfileParam, LoginParam, RegisterParams } from "@/core/entities/params/user.param"
 import UserInterface from "../repositories/user.interface";
 import { API_ENDPOINTS } from "./apiEndpoints";
 

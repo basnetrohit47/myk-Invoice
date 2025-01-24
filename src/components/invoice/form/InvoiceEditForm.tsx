@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FormInputDropdown } from "../../formInputs/DropdownInput";
 import { TextFieldInput } from "@/components/formInputs/TextFieldInput";
-import { EditInvoiceByIdParam, EditInvoiceSchema } from "@/core/params/invoice.param";
+import { EditInvoiceByIdParam, EditInvoiceSchema } from "@/core/entities/params/invoice.param";
 import { useEffect, useRef } from "react";
 import { EditItemFields } from "./EditItemFields";
 import { useRouter } from "next/navigation";
