@@ -59,8 +59,8 @@ const ProfilePage = () => {
           </div>
 
           <div className="flex gap-8  m-10">
-            <TextFieldInput control={control} name="first_name" label="First Name" />
-            <TextFieldInput control={control} name="last_name" label="Last Name" />
+            <TextFieldInput control={control} name="firstName" label="First Name" />
+            <TextFieldInput control={control} name="lastName" label="Last Name" />
           </div>
           <div className="flex gap-8  m-10">
             <TextFieldInput control={control} name="country" label="Country" />

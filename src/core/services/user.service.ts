@@ -20,27 +20,58 @@ export default class UserService {
 
 
   public async registerUser(params: RegisterParams): Promise<RegisterModel | undefined> {
-    const response = await this.datasource.registerUser(params);
-    return RegisterResponseSchema.parse(response);
+    try {
+      const response = await this.datasource.registerUser(params);
+      return RegisterResponseSchema.parse(response);
+    }
+    catch (error) {
+      console.error(error)
+      throw new Error('Profile data validation');
+    }
+
+
+
 
   }
 
   public async loginUser(params: LoginParam): Promise<LoginModel | undefined> {
-    const response = await this.datasource.loginUser(params)
-    const responseParse = LoginSchema.parse(response);
-    localStorage.setItem("token", responseParse.access);
-    return responseParse
+    try {
+      const response = await this.datasource.loginUser(params)
+      const responseParse = LoginSchema.parse(response);
+      localStorage.setItem("token", responseParse.access);
+      return responseParse
+    }
+    catch (error) {
+      console.error(error)
+      throw new Error('Profile data validation');
+    }
+
 
   }
   public async editProfile(params: EditProfileParam): Promise<ProfileModel | undefined> {
-    const response = await this.datasource.editProfile(params)
-    return Profilechema.parse(response);
+    try {
+      const response = await this.datasource.editProfile(params)
+      return Profilechema.parse(response);
+    }
+    catch (error) {
+      console.error(error)
+      throw new Error('Profile data validation');
+    }
+
 
   }
   public async getProfile(): Promise<ProfileModel | undefined> {
 
     const respnose = await this.datasource.getProfile();
-    return Profilechema.parse(respnose);
+    try {
+      const parsedResponse = Profilechema.parse(respnose);
+      return parsedResponse;
+    }
+    catch (error) {
+      console.error(error)
+      throw new Error('Profile data validation');
+    }
+
 
   }
 }

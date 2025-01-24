@@ -9,8 +9,8 @@ export type LoginModel = z.infer<typeof LoginSchema>
 export const Profilechema = z.object({
     email: z.string(),
     username: z.string(),
-    last_name: z.string().min(3, 'atleast 2 words required'),
-    first_name: z.string().min(3, 'atleast 2 words required'),
+    lastName: z.string().min(3, 'atleast 2 words required'),
+    firstName: z.string().min(3, 'atleast 2 words required'),
     city: z.string().optional(),
     country: z.string().optional(),
     address: z.string().optional(),

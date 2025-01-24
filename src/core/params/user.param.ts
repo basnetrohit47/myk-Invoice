@@ -25,8 +25,8 @@ export const EditProfileSchema = z.object({
     email: z.string().readonly(),
     username: z.string().readonly(),
 
-    last_name: z.string().min(3, 'atleast 2 words required'),
-    first_name: z.string().min(3, 'atleast 2 words required'),
+    lastName: z.string().min(3, 'atleast 2 words required'),
+    firstName: z.string().min(3, 'atleast 2 words required'),
     city: z.string().optional(),
     country: z.string().optional(),
     address: z.string().optional(),

@@ -15,7 +15,7 @@ const InvoicePage = () => {
       <div className="mx-20 my-2">
         <div>
           <Typography variant="h5" color="text.primary">
-            Hello {profile?.first_name}
+            Hello {profile?.firstName}
             {getStoredTheme}
           </Typography>
         </div>
